@@ -2,6 +2,8 @@
 const { Router } = require("express");
 //Ejecutamos ese metodo en la variable router
 const router = Router();
+//Lamamos a file System
+const fs = require('fs')
 
 const products = [];
 
@@ -52,6 +54,7 @@ router.post("/", (req, res) => {
       category: req.body.category,
     });
     products.push(productAdd);
+    fs.writeFile('../products.json', JSON.stringify(products,null, '\t'))
   }
 
   res.send("Added product");
