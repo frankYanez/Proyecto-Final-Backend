@@ -1,0 +1,72 @@
+[
+	{
+		"id": 1,
+		"title": "Camisa",
+		"description": "Camisa de rayas",
+		"code": "8251",
+		"price": 3000,
+		"status": true,
+		"stock": 5,
+		"category": "Camisas"
+	},
+	{
+		"id": 2,
+		"title": "Camisa",
+		"description": "Camisa de rayas",
+		"code": "8251",
+		"price": 3000,
+		"status": true,
+		"stock": 5,
+		"category": "Camisas"
+	},
+	{
+		"id": 3,
+		"title": "Camisa Hawaiana",
+		"description": "Camisa de flores",
+		"code": "8784",
+		"price": 3000,
+		"status": true,
+		"stock": 5,
+		"category": "Camisas"
+	},
+	{
+		"id": 4,
+		"title": "Pantalon chupin",
+		"description": "Oanatlon de jean",
+		"code": "8784",
+		"price": 3000,
+		"status": true,
+		"stock": 5,
+		"category": "Jeans"
+	},
+	{
+		"id": 5,
+		"title": "Jean Mom",
+		"description": "Jean roto",
+		"code": "8251",
+		"price": 3000,
+		"status": true,
+		"stock": 5,
+		"category": "Jeans"
+	},
+	{
+		"id": 6,
+		"title": "Jean recto",
+		"description": "Jean sin roturas",
+		"code": "8251",
+		"price": 5000,
+		"status": true,
+		"stock": 5,
+		"category": "Jeans"
+	},
+	{
+		"id": 7,
+		"title": "Gorra",
+		"description": "Gorra nike",
+		"code": "8430",
+		"price": 5000,
+		"status": true,
+		"stock": 5,
+		"category": "Gorras"
+	}
+]

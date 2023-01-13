@@ -1,12 +1,27 @@
 {
   "name": "proyecto-final-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "src/app-h.js",
   "scripts": {
+    "start": "node src/app-h.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankYanez/Proyecto-Final-Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frankYanez/Proyecto-Final-Backend/issues"
+  },
+  "homepage": "https://github.com/frankYanez/Proyecto-Final-Backend#readme",
+  "description": ""
 }
