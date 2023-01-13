@@ -34,6 +34,7 @@ app.get('/home', (req,res)=>{
 
 
 
+const products = []
 
 
 const httpServer = app.listen(PORT, ()=>{
@@ -44,10 +45,22 @@ const socketServer = new Server(httpServer)
 
 socketServer.on('connection', (socket)=>{
     console.log('new client');
-    // console.log(socket);
+    // console.log(socket.id);
+
+    socket.on('create-product', (data)=>{
+        const id = products.length
+
+        
+
+
+        products.push({...data, id})
+        socketServer.emit('products-render', products)
+    })
+    
 })
 
 
+module.exports = products;
 
 
 // // 

@@ -19,11 +19,6 @@ const getProducts = async () => {
 };
 
 
-const escribirArchivo = (url)=>{
-  
-}
-
-
 
 
 //Routes
