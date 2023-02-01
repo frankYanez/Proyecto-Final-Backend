@@ -32,7 +32,7 @@ form?.addEventListener('submit', (e)=>{
 
 socket.on('products-render', (data)=>{
     
-   const html = data.map( product =>  `<li>${product.title}</li><br><p>${product.price}</p><br><button onClick='deleteProduct(${product.id})'>Eliminar Producto</button>`) 
+   const html = data.map( product =>  `<li>${product.title}</li><br><p>${product.price}</p><br><button data-id="${product.id}" onClick='deleteProduct(${product.id})'>Eliminar Producto</button>`) 
 
    const deleteProduct = (id)=>{
     const found = products.find( product => product.id === id)

@@ -31,6 +31,7 @@ class ProductManager {
         return newProduct
     }
 
+    
     async getProducts(){
         if(existsSync(this.path)){
             const data = await fs.readFile(this.path, 'utf-8')

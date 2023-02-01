@@ -16,6 +16,8 @@
 
 //La carpeta PUBLIC: Si va por fuera del src Va al mismo nivel que el package.json y en el mildweare se pone solo 'public'. Pero si esta por dentro del src entonces en el mildware se pone 'src/public'
 
+//require(path): para resolver la ruta de la carpeta views. Se importa y en app.set( 'views', path.join(__dirname + './views))
+
 //MULTER: 
 //Definir donde y como guardar los archivos de multer. Una vez instalado multer, lo requerimos require('multer') y luego:
 
@@ -46,7 +48,11 @@
 
 //BD RELACIONAL:SQL : Esta almacenada toda la informacion en tablas, como si fuera un excel.
 
+//Nos conectamos a la base de datos a travez de mongoose
+//Schema: campos que quiero guardar
+//Model: nombre de la tabla
 
+//Cuando vamos a insertar varos objetos se insertan adentro de un array
 
 
 

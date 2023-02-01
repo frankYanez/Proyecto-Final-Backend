@@ -5,6 +5,8 @@ const PORT = 8080
 const appRoutes = require('./routers/app.routers')
 const handlebars = require('express-handlebars')
 const { Server } = require('socket.io')
+const { UserService } = require('./services/userServices')
+const db = require('./config/dbconfig')
 
 
 
@@ -31,6 +33,28 @@ app.get('/home', (req,res)=>{
     
     res.render('home',{})
 })
+
+//EJEMPLO MONGOOSE
+const userPrefix = '/api/users'
+
+app.post(userPrefix, async (req,res)=>{
+    const service = new UserService();
+
+    //Create es uno de los metodos de la Clase constructora en el otro archivo
+    const data = await service.create()
+
+    res.send({ data })
+})
+
+app.get(`${userPrefix}:id`, async (req,res)=>{
+    const service = new UserService();
+
+    //Create es uno de los metodos de la Clase constructora en el otro archivo
+    const data = await service.getOne()
+
+    res.send({ data })
+})
+
 
 
 
