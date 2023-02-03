@@ -1,4 +1,4 @@
-const { model } = require('../dao/models/user.model')
+const { model } = require('../models/user.model')
 
 class UserService 
 {

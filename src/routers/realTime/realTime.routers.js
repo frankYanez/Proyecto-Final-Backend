@@ -1,7 +1,9 @@
 const { Router } = require("express");
 //Ejecutamos ese metodo en la variable router
 const router = Router();
-//Lamamos a file System
+//Llamamos al mongoManager
+
+
 
 
 router.get( '/', (req,res)=>{

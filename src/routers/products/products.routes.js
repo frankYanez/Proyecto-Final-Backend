@@ -5,26 +5,21 @@ const router = Router();
 //Lamamos a file System
 const fs = require("fs/promises");
 const { existsSync } = require("fs");
-const productManager = require('../../Manager/managerProducts')
-const Manager = new productManager('src/products.json')
-
-const getProducts = async () => {
-  if (existsSync("../products.json")) {
-    const products = await Manager.getProducts();
-    console.log(products);
-    return products;
-  } else {
-    return [];
-  }
-};
+const UserMongoManager = require("../../dao/mongoManagers/user.manager");
+// const productManager = require('../../Manager/managerProducts')
+// const Manager = new productManager('src/products.json')
+const Manager = new UserMongoManager()
+const UserSchema = require('../../models/user.model');
 
 
 
 
 //Routes
+
+//Get all
 router.get("/", async (req, res) => {
-  // const products = await getProducts();
-  const products = await getProducts()
+
+  const products = await Manager.getProducts()
  
   res.json({
     status: "success",
@@ -32,29 +27,38 @@ router.get("/", async (req, res) => {
   });
 });
 
-router.get("/:pid", (req, res) => {
+
+
+//Get by ID
+router.get("/:pid", async (req, res) => {
   const idFind = req.params.pid;
 
+
   if (idFind) {
-    const productFind = products.find((product) => product.id === idFind);
-    res.send(productFind);
+
+    const productFound = await Manager.getById(idFind);
+    res.json({status: "success",
+    data: productFound});
     return;
   }
 
   res.send("Product not found");
 });
 
-router.post("/", async (req, res) => {
-   
 
+//Create One
+router.post("/", async (req, res) => {
+   const data = await Manager.addProduct(req.body)
+   data.save()
+   console.log(data);
   // let productAdd = {}
 
 
-  const newProduct = {
-   ...req.body
-  }
+  // const newProduct = {
+  //  ...req.body
+  // }
 
-  const productAdd = await Manager.addProduct(newProduct)
+  // const productAdd = await Manager.addProduct(newProduct)
   // if (!products.length) {
   //    productAdd = {
   //     id: 1,
@@ -73,12 +77,12 @@ router.post("/", async (req, res) => {
   // await fs.writeFile("products.json", JSON.stringify(products, null, "\t"));
   res.json({
     success: 'true',
-    data: productAdd
+    data: data
   });
 });
 
 router.put("/:pid", async (req,res) => {
-  const products = await getProducts()
+  const products = await Manager
   const idChange = req.params.pid;
   // let productFound = await Manager.getProductById(idChange)
   const newProperties = req.body;
