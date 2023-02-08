@@ -31,7 +31,7 @@ app.use('/api', appRoutes)
 app.get('/home', (req,res)=>{
     
     
-    res.render('home',{})
+    res.render('home',{products})
 })
 
 //EJEMPLO MONGOOSE

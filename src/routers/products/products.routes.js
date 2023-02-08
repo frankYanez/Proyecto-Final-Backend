@@ -3,28 +3,35 @@ const { Router } = require("express");
 //Ejecutamos ese metodo en la variable router
 const router = Router();
 //Lamamos a file System
-const fs = require("fs/promises");
-const { existsSync } = require("fs");
 const UserMongoManager = require("../../dao/mongoManagers/user.manager");
-// const productManager = require('../../Manager/managerProducts')
-// const Manager = new productManager('src/products.json')
 const Manager = new UserMongoManager()
-const UserSchema = require('../../models/user.model');
-
+const productsModel = require("../../pagination/model/users.model");
 
 
 
 //Routes
 
 //Get all
-router.get("/", async (req, res) => {
+router.get("/:limit?/:page?/:sort?/:query?", async (req, res) => {
+  const products = await productsModel.aggregate([
+    {
+      $match: { category: req.query.query}
+    }
+    ,{
+      $sort: { price: +req.query.sort }
+    }
+  ])
 
-  const products = await Manager.getProducts()
- 
+ console.log(req.query);
+
+  const response = await productsModel.paginate({} , {page:req.query.page || 1 , limit: req.query.limit || 10, lean: true})
   res.json({
     status: "success",
-    data: products,
+    payload: response,
+
   });
+
+  // res.render('home', {products})
 });
 
 
@@ -48,33 +55,10 @@ router.get("/:pid", async (req, res) => {
 
 //Create One
 router.post("/", async (req, res) => {
-   const data = await Manager.addProduct(req.body)
-   data.save()
+   const data = await Manager.addProduct()
+  //  data.save()
    console.log(data);
-  // let productAdd = {}
-
-
-  // const newProduct = {
-  //  ...req.body
-  // }
-
-  // const productAdd = await Manager.addProduct(newProduct)
-  // if (!products.length) {
-  //    productAdd = {
-  //     id: 1,
-  //     ...newProduct
-  //   };
-    
-  // } else {
-  //    productAdd = {
-  //     id: products[products.length - 1].id + 1,
-  //     ...newProduct
-  //   };
-    
-  // }
-  // products.push(productAdd);
   
-  // await fs.writeFile("products.json", JSON.stringify(products, null, "\t"));
   res.json({
     success: 'true',
     data: data
@@ -97,7 +81,7 @@ router.put("/:pid", async (req,res) => {
   // await fs.writeFile('src/products.json', JSON.stringify(products, null, '\t'))
 
   res.json({
-    success: 'true',
+    success: 'true', 
     data: productUpdate
   })
 });

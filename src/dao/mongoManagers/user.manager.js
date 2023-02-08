@@ -1,9 +1,11 @@
 const model = require("../../models/user.model");
+const productsModel = require("../../pagination/model/users.model");
+
 
 class UserMongoManager {
   async getProducts() {
     try {
-      const users = await model.find();
+      const users = await productsModel.find().lean();
       return users;
     } catch (error) {
       throw new Error("Error");
@@ -14,7 +16,7 @@ class UserMongoManager {
     try {
 
 
-      const newUser = model.create(payload);
+      const newUser = productsModel.insertMany(payload);
 
       return  newUser;
     } catch (error) {
@@ -29,6 +31,10 @@ class UserMongoManager {
     } catch (error) {
         console.log(error);
     }
+  }
+
+  async updateItem(){
+
   }
 }
 
