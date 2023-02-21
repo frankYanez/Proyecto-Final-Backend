@@ -1,36 +1,31 @@
 //Requerimos el metodo Router de express
 const { Router } = require("express");
+const ProductMongoManager = require("../../dao/mongoManagers/products.manager");
 //Ejecutamos ese metodo en la variable router
 const router = Router();
-//Lamamos a file System
-const UserMongoManager = require("../../dao/mongoManagers/user.manager");
-const Manager = new UserMongoManager()
-const productsModel = require("../../pagination/model/users.model");
+const productsModel = new ProductMongoManager
+// const productsModel = require("../../models/product.model");
 
 
 
 //Routes
 
 //Get all
-router.get("/:limit?/:page?/:sort?/:query?", async (req, res) => {
-  const products = await productsModel.aggregate([
-    {
-      $match: { category: req.query.query}
-    }
-    ,{
-      $sort: { price: +req.query.sort }
-    }
-  ])
+router.get("/:limit?/:page?/:sort?/:query?", async (req, res) => {7
+  const { limit , page , sort , query} = req.query;
+
+  const products = await productsModel.getProducts()
 
  console.log(req.query);
 
-  const response = await productsModel.paginate({} , {page:req.query.page || 1 , limit: req.query.limit || 10, lean: true})
+  const response = await productsModel.paginate({ email: '@'} , {page: page|| 1 , limit: limit || 10, lean: true})
   res.json({
     status: "success",
-    payload: response,
+    payload: products,
 
   });
 
+  console.log(products);
   // res.render('home', {products})
 });
 
@@ -55,9 +50,21 @@ router.get("/:pid", async (req, res) => {
 
 //Create One
 router.post("/", async (req, res) => {
-   const data = await Manager.addProduct()
-  //  data.save()
-   console.log(data);
+   const data = await Manager.addProduct(
+{
+
+  name: "Andres",
+  price: 20,
+  stock: 12 ,
+  category: 'camisas' 
+},{
+
+  name: "Mom",
+  price: 50,
+  stock: 2 ,
+  category: 'jeans' 
+})
+   
   
   res.json({
     success: 'true',

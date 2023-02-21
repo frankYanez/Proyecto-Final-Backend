@@ -56,54 +56,64 @@
 
 
 
+// <----- COOKIES ------->
+// Instalamos cookie-parser
 
-// Consigna
-//  Configurar nuestro proyecto para que
-// trabaje con Handlebars y websocket.
-
-// Aspectos a incluir
-//  Configurar el servidor para integrar el
-// motor de plantillas Handlebars e instalar
-// un servidor de socketio al mismo.
-//  Crear una vista “home handlebars” la
-// cual contenga una lista de todos los,
-// productos agregados hasta el momento
-
-// ‘Ademas, crear una vista
-// “realTimeProducts handlebars", la cual
-// vivira en el endpoint
-// “ realtimeproducts" en nuestro views
-// router, ésta contendra la misma lista de
-// productos, sin embargo, ésta trabejaré
-// con websockets
-// Al trabajar con websockets, cada
-// ‘vez que creemos un producto
-// nuevo, o bien cade vez que
-// eliminemos un producto, se debe
-// actualizar automaticamente en
-// dicha vista la lista,
-
-// Sugerencias
-
-//  Ya que la conexién entre una consulta
-// HTTP y websocket no esta contemplada
-// dentro de la clase. Se recomienda que,
-// para la creacion y eliminacién de un
-// Producto, Se cree un formulario simple
-// ena vista
-// roalTimeProductshandlebars. Para que
-// el contenido se envie desde
-// websockots y no HTTP. Sin embargo,
-
-// no es la mejor solucion, leer el
-
-// siguiente punto.
-
-// Si se desea hacer la conexion de socket
-// emits con HTTP, deberas buscar la
-// forma de utilizar el servidor io de
-// Sockets dentro de la peticién POST.
-// Como utlizarias un emit dentro del
-// Post?
-
+//En los milddware ejecutamos el cookie parser para poder usar los metodos de la libreria de cookie
+// const cookieParser = requiera('cookie-parser')
+// app.use(cookieparser(['nombre-clave']))
+//nombre-clave: Para firmar nuestras cookies 
  
+//res.cookie('nombreCookie', 'valorCookie', {hhtpOnly: true, signed: true})
+//req.cookies.nombreCookie = Para ver el valor de la cokkie
+//res.clearCookie('nombreCookie')
+
+//httpOnly: true. Es para que nadie pueda cambiar el valor de nuestras cookies. Se envia como un objeto dentro de res.cookie
+//signed: true. Para que las cookies vayan firmadas. Se cambiaria el atributo res.cookie => res.signedCookie.valorCookie
+
+//<------ SESSION ----->
+//Instalamos express-session
+
+//solo utilizamos el objeto req.session en las sessiones.
+
+//req.session.destroy = me borra las sessiones guardadas incluso en archivos o BD
+
+//Para destruir una session: req.session.destroy((error)=>{
+//     res.send(error)
+// })
+
+
+//---NUNCA HACEMOS REDIRECT EN PEETICIONES POST--
+
+
+//<----- FILESTORAGE----->
+//instalamos session-file-store
+
+//Para guardar las sessiones en base de datos o archivos, se hace de forma asincrona. Por eso necesitamos colocar el await y tambien req.session.save((error)=> if(err){ log(error)} else{res.redirect('/)} )
+//De esta forma nos aseguramos de que la sesion fue guardada
+
+//const FileStore = require('session-file-store)(session)  --> Se inicializa y se le pasa como parametro la session que estamos usando
+
+//Cookies,session y Storage Clase. Hora 1:02 (Aqui dice como hacer la session en mongo)
+
+//Instalamos Connect-Mongo
+
+//Usampns mongo conect en el storage
+
+//<----- BCRYPT ----->
+//lo requerimos y luego usamos 2 metodos: bcrypt.hashSync(passwordAEncriptar, bcrypt.genSaltSync(10 "este es el numero de letras aleatorias que genera la contraseña"))
+
+
+//<----- PASSPORT ----->
+
+//Requerimos passport.
+
+//app.use(passport.initialize())
+//app.use(passport.session())
+
+
+// App ID: 296070
+
+// Client ID: Iv1.4222d2e4c70cba07
+
+//42f940875465b467b155bce7bf12e3b31e84fbde

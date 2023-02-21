@@ -3,10 +3,11 @@ const router = Router()
 
 const cartRoutes = require('./carts/carts.routes')
 const productsRoutes = require('./products/products.routes')
-const realTime = require('./realTime/realTime.routers')
+const session = require('./sessions/sessions.routes')
 
 router.use('/products',productsRoutes)
 router.use('/carts',cartRoutes)
-router.use('/realtimeproducts', realTime)
+router.use('/session', session)
+
 
 module.exports = router;

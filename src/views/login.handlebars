@@ -1,0 +1,21 @@
+ <h1 class="text-center ">Welcome to <span class="font-monospace bg-dark text-white">My Login</span> </h1>
+    <form class="form-control w-50 m-auto mt-5 " action="" method="post">
+        
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com">
+            <label for="mail">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+          <div>
+            <button  class="bg-black text-white  p-2 btn " type="submit">Login</button>
+          </div>
+
+          <a class="btn btn-dark" href="/api/session/github/callback">Initialize whit Github </a>
+    </form>
+    
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/script.js"></script>
